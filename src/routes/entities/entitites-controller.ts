@@ -1,5 +1,7 @@
 import { request, gql } from "graphql-request";
 import config from "../../../config";
+import { set, mapValues } from "lodash";
+import { JsonToArrayOfJson } from "../../../utils";
 
 export default {
   getEntityInsights: async (req, res) => {},
@@ -32,7 +34,16 @@ export default {
     };
 
     await request(config.neo4jIp, query, variables)
-      .then((data) => res.send(data))
+      .then((graphqlRes) => {
+        graphqlRes.entities.forEach((entity) =>
+          set(entity, "id", entity.id.id)
+        );
+        graphqlRes.entities.map(
+          (entity) => (entity.properties = JsonToArrayOfJson(entity.properties))
+        );
+
+        res.send(graphqlRes.entities);
+      })
       .catch((err) => {
         res.status(400);
         res.send(err);
