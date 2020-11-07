@@ -19,7 +19,7 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
       Params: params,
     };
     try {
-      const graphqlRes = await request(config.neo4jIp, query, variables);
+      const graphqlRes = await request(config.neo4jOutputIp, query, variables);
       return Promise.resolve(graphqlRes.getPagesNumber);
     } catch (err) {
       return Promise.reject(err);
@@ -29,18 +29,21 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
   async getEntitiesByParams(
     params: Object,
     entitiesPerPage: number,
-    pageNumber: number
+    pageNumber: number,
+    entityType: string | null = null
   ): Promise<Object> {
     const query = gql`
       query getEntities(
         $Params: JSONObject!
         $entitiesPerPage: Float!
         $pageNumber: Float!
+        $entityType: String
       ) {
         entities(
           Params: $Params
           entitiesPerPage: $entitiesPerPage
           pageNumber: $pageNumber
+          entityType: $entityType
         ) {
           properties: Properties
           type: EntityType
@@ -53,10 +56,11 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
       pageNumber: pageNumber,
       entitiesPerPage: entitiesPerPage,
       Params: params,
+      entityType: entityType,
     };
 
     try {
-      let graphqlRes = await request(config.neo4jIp, query, variables);
+      let graphqlRes = await request(config.neo4jOutputIp, query, variables);
       graphqlRes.entities.forEach((entity) => set(entity, "id", entity.id.id));
       graphqlRes.entities.map(
         (entity) => (entity.properties = JsonToArrayOfJson(entity.properties))

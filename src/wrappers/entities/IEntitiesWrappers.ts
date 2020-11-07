@@ -6,7 +6,8 @@ export default interface IEntitiesWrapper {
   getEntitiesByParams(
     params: Object,
     entitiesPerPage: number,
-    pageNumber: number
+    pageNumber: number,
+    entityType: string | null
   ): Promise<Object>;
 }
   

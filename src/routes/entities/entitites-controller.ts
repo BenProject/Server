@@ -8,7 +8,7 @@ export default {
   getPageCountByParams: async (req, res) => {
     const { entitiesPerPage, params } = req.body;
 
-    if (!params || !entitiesPerPage|| isEmpty(params)) {
+    if (!params || !entitiesPerPage || isEmpty(params)) {
       res.status(400);
       return res.send("didnt provided all must be args");
     }
@@ -27,8 +27,7 @@ export default {
   },
 
   getEntitiesByParams: async (req, res) => {
-    const { pageNumber, entitiesPerPage, params } = req.body;
-
+    const { pageNumber, entitiesPerPage, params, entityType } = req.body;
     if (!params || !entitiesPerPage || !pageNumber || isEmpty(params)) {
       res.status(400);
       return res.send("didnt provided all must be args");
@@ -38,7 +37,8 @@ export default {
         await entitiesWrapper.getEntitiesByParams(
           params,
           entitiesPerPage,
-          pageNumber
+          pageNumber,
+          entityType
         )
       );
     } catch (err) {

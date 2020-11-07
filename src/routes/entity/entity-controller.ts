@@ -29,4 +29,13 @@ export default {
       res.send(`error while trying to getEntitiesRelationById, err: ${err}`);
     }
   },
+  createEntity: async (req, res) => {
+    const { properties, type } = req.body;
+    try {
+      res.send({ id: await entityWrapper.createEntity(properties, type) });
+    } catch (err) {
+      res.status(500);
+      res.send(`error while trying to create entity ${err}`);
+    }
+  },
 };

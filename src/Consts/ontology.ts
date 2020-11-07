@@ -1,5 +1,5 @@
 export const entityTypes = [
-  { type: "אדם", id: "1" },
+  { type: "Person", id: "1" },
   { type: "פלאפון", id: "2" },
 ];
 
