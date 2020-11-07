@@ -6,12 +6,12 @@ import {
 } from "../../../utils";
 import IEntityWrapper from "./IEntityWrapper";
 import { set, differenceWith, isEqual } from "lodash";
-import axios,{AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export default class GraphqlEntityWrapper implements IEntityWrapper {
   async createEntity(properties: Object, entityType: string): Promise<string> {
     try {
-      const axiosRes: AxiosResponse<any> = await axios.post(
+      const neo4jRes: AxiosResponse<any> = await axios.post(
         `${config.neo4jInputIp}/entity`,
         {
           entity: {
@@ -20,10 +20,22 @@ export default class GraphqlEntityWrapper implements IEntityWrapper {
           },
         }
       );
-      if (!axiosRes || !axiosRes.data.id) {
+      if (!neo4jRes || !neo4jRes.data.id) {
         return Promise.reject("problem while sending request to dal");
       }
-      return Promise.resolve(axiosRes.data.id);
+
+      try {
+        if (properties["name"]) {
+          await axios.post(`${config.elasticIp}/entities`, {
+            name: properties["name"],
+            id: neo4jRes.data.id,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      return Promise.resolve(neo4jRes.data.id);
     } catch (err) {
       return Promise.reject(err);
     }
