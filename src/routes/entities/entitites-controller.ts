@@ -8,7 +8,7 @@ export default {
   getPageCountByParams: async (req, res) => {
     const { entitiesPerPage, params } = req.body;
 
-    if (!params || !entitiesPerPage) {
+    if (!params || !entitiesPerPage|| isEmpty(params)) {
       res.status(400);
       return res.send("didnt provided all must be args");
     }
