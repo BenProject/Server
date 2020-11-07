@@ -4,8 +4,6 @@ import { set,isEmpty } from "lodash";
 import { JsonToArrayOfJson } from "../../../utils";
 
 export default {
-  getEntityInsights: async (req, res) => {},
-
   getPageCountByParams: async (req, res) => {
     const { entitiesPerPage, params } = req.body;
 

@@ -1,4 +1,4 @@
-import { entityTypes, entityTypeOntology } from "../../Consts/ontology";
+import { entityTypes, entityTypeOntology } from "../../consts/ontology";
 
 export default {
   getEntityTypes: (req, res) => {
