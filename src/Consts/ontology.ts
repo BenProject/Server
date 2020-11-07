@@ -8,8 +8,8 @@ export const entityTypeOntology = [
     id: "1",
     type: "אדם",
     properties: {
-      must: [{ age: "number" }, { name: "text" }],
-      optional: [{ birthDay: "date" }, { eyeColor: "text" }],
+      must: [{ age: "number" }, ],
+      optional: [{ birthDay: "date" }, { eyeColor: "text" },{ name: "text" }],
     },
   },
   {
