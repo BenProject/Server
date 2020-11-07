@@ -9,3 +9,4 @@ export default interface IEntitiesWrapper {
     pageNumber: number
   ): Promise<Object>;
 }
+  
