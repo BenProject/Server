@@ -9,5 +9,13 @@ export default interface IEntitiesWrapper {
     pageNumber: number,
     entityType: string | null
   ): Promise<Object>;
+  getSuggestions(
+    name: string,
+    suggestionsCount: number
+  ): Promise<Array<Object>>;
 }
-  
+
+export interface idToEntityName {
+  id: string;
+  name: string;
+}

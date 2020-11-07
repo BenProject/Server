@@ -20,4 +20,4 @@ app.use("/entity", entityRouter);
 app.use("/types", ontolgyRouter);
 app.use("/entities", entitiesRouter);
 
-app.listen(5000);
+app.listen(config.ExpressAppPort);

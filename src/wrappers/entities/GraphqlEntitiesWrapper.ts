@@ -3,8 +3,28 @@ import config from "../../../config";
 import { JsonToArrayOfJson } from "../../../utils";
 import IEntitiesWrapper from "./IEntitiesWrappers";
 import { set } from "lodash";
+import axios, { AxiosResponse } from "axios";
+import { idToEntityName } from "../entities/IEntitiesWrappers";
 
 export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
+  async getSuggestions(
+    name: string,
+    suggestionsCount: number
+  ): Promise<Array<Object>> {
+    try {
+      const res: AxiosResponse<any> = await axios.post(
+        `${config.elasticIp}/entities/search`,
+        {
+          name,
+          numberOfEntities: suggestionsCount,
+        }
+      );
+
+      return Promise.resolve(res.data);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
   async getPageCountByParams(
     params: Object,
     entitiesPerPage: number

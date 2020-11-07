@@ -46,4 +46,19 @@ export default {
       res.send(`error while trying to getEntitiesByParams, err: ${err}`);
     }
   },
+  getSuggestions: async (req, res) => {
+    const { name, suggestionsCount } = req.body;
+
+    if (!name || !suggestionsCount) {
+      res.status(400);
+      return res.send("didnt provided all must be args");
+    }
+
+    try {
+      res.send(await entitiesWrapper.getSuggestions(name, suggestionsCount));
+    } catch (err) {
+      res.status(500);
+      res.send(`error while trying to getSuggestions, err: ${err}`);
+    }
+  },
 };
