@@ -1,7 +1,4 @@
-import { request, gql } from "graphql-request";
-import config from "../../../config";
-import { set, isEmpty } from "lodash";
-import { JsonToArrayOfJson } from "../../../utils";
+import { isEmpty } from "lodash";
 import { entitiesWrapper } from "../../bootstrapper";
 
 export default {

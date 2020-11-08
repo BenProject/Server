@@ -4,7 +4,6 @@ import { JsonToArrayOfJson } from "../../../utils";
 import IEntitiesWrapper from "./IEntitiesWrappers";
 import { set } from "lodash";
 import axios, { AxiosResponse } from "axios";
-import { idToEntityName } from "../entities/IEntitiesWrappers";
 
 export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
   async getSuggestions(
