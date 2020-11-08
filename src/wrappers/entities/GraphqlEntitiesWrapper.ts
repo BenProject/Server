@@ -5,6 +5,7 @@ import IEntitiesWrapper from "./IEntitiesWrappers";
 import { set } from "lodash";
 import axios, { AxiosResponse } from "axios";
 import { idToEntityName } from "./IEntitiesWrappers";
+import Entity from "../../dal/entity";
 
 export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
   async getSuggestions(
@@ -51,7 +52,7 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
     entitiesPerPage: number,
     pageNumber: number,
     entityType: string | null = null
-  ): Promise<Array<Object>> {
+  ): Promise<Array<Entity>> {
     const query = gql`
       query getEntities(
         $Params: JSONObject!

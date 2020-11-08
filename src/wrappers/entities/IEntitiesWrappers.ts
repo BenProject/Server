@@ -1,3 +1,5 @@
+import Entity from "../../dal/entity";
+
 export default interface IEntitiesWrapper {
   getPageCountByParams(
     params: Object,
@@ -8,7 +10,7 @@ export default interface IEntitiesWrapper {
     entitiesPerPage: number,
     pageNumber: number,
     entityType: string | null
-  ): Promise<Array<Object>>;
+  ): Promise<Array<Entity>>;
   getSuggestions(
     name: string,
     suggestionsCount: number
