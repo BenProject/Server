@@ -16,7 +16,7 @@ export const entityTypeOntology = [
     id: "2",
     type: "פלאפון",
     properties: {
-      must: [{ phoneNumber: "text" }, { name: "text" }, { name: "text" }],
+      must: [{ phoneNumber: "text" }, { name: "text" }],
       optional: [{ birthDay: "date" }],
     },
   },
