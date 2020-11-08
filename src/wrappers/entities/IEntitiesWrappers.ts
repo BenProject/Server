@@ -2,13 +2,13 @@ export default interface IEntitiesWrapper {
   getPageCountByParams(
     params: Object,
     entitiesPerPage: number
-  ): Promise<Object>;
+  ): Promise<number>;
   getEntitiesByParams(
     params: Object,
     entitiesPerPage: number,
     pageNumber: number,
     entityType: string | null
-  ): Promise<Object>;
+  ): Promise<Array<Object>>;
   getSuggestions(
     name: string,
     suggestionsCount: number

@@ -27,7 +27,7 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
   async getPageCountByParams(
     params: Object,
     entitiesPerPage: number
-  ): Promise<Object> {
+  ): Promise<number> {
     const query = gql`
       query getPageCount($entitiesPerPage: Float!, $Params: JSONObject!) {
         getPagesNumber(Params: $Params, entitiesPerPage: $entitiesPerPage)
@@ -50,7 +50,7 @@ export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
     entitiesPerPage: number,
     pageNumber: number,
     entityType: string | null = null
-  ): Promise<Object> {
+  ): Promise<Array<Object>> {
     const query = gql`
       query getEntities(
         $Params: JSONObject!
