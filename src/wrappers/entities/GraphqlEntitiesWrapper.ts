@@ -4,12 +4,13 @@ import { JsonToArrayOfJson } from "../../../utils";
 import IEntitiesWrapper from "./IEntitiesWrappers";
 import { set } from "lodash";
 import axios, { AxiosResponse } from "axios";
+import { idToEntityName } from "./IEntitiesWrappers";
 
 export default class GraphqlEntitiesWrapper implements IEntitiesWrapper {
   async getSuggestions(
     name: string,
     suggestionsCount: number
-  ): Promise<Array<Object>> {
+  ): Promise<Array<idToEntityName>> {
     try {
       const res: AxiosResponse<any> = await axios.post(
         `${config.elasticIp}/entities/search`,

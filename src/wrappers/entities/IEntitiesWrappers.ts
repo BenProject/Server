@@ -12,7 +12,7 @@ export default interface IEntitiesWrapper {
   getSuggestions(
     name: string,
     suggestionsCount: number
-  ): Promise<Array<Object>>;
+  ): Promise<Array<idToEntityName>>;
 }
 
 export interface idToEntityName {
