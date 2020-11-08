@@ -4,13 +4,13 @@ import ontolgyRouter from "./routes/ontology";
 import entityRouter from "./routes/entity";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
+import config from "../config";
 
 var corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200,
 };
 
-import config from "../config";
 const app = express();
 
 app.use(cors(corsOptions));
