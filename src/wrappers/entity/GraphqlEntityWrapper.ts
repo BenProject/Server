@@ -82,10 +82,17 @@ export default class GraphqlEntityWrapper implements IEntityWrapper {
 
         nodes: removeDuplicateFromArrayByKey(
           graphqlRes.entityRelationsPairs.map((entityRelationPair) => {
+            let labelKey = "";
+            for (let key of config.neo4jOptionalLabelKey) {
+              if (entityRelationPair.Entity.Properties[key]) {
+                labelKey = key;
+                break;
+              }
+            }
+
             return {
               id: entityRelationPair.Entity.id.id,
-              //TODO: more generic than alawys look at Properties.name
-              label: entityRelationPair.Entity.Properties.name,
+              label: entityRelationPair.Entity.Properties[labelKey].toString(),
             };
           }),
           "id"
